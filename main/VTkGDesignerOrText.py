@@ -2,9 +2,28 @@ import tkinter as tk
 from tkinter import ttk
 
 class VTkGDesigner(tk.Canvas):
-    def __init__(self, design_or_text_frame):
+    def __init__(self, design_or_text_frame, properties_frame):
         super().__init__(design_or_text_frame, height=850, width=1000, bg="white")
+        self.properties_frame = properties_frame
         self.grid(row= 1, column=0, columnspan=2, sticky='nw')
+        self.control_list = []
+    
+    def add_new_control(self, control):
+        self.control_list.append(control)
+        control.bind("<Button-1>", self.dragStart)
+        control.bind("<B1-Motion>", self.dragMotion)
+
+    def dragStart(self, event):
+        widget = event.widget
+        self.properties_frame.get_properties_list(widget)
+        widget.StartX = event.x
+        widget.StartY = event.y
+
+    def dragMotion(self, event):
+        widget = event.widget
+        x = widget.winfo_x() - widget.StartX + event.x
+        y = widget.winfo_y() - widget.StartY + event.y
+        widget.place(x=x, y=y)
 
 class VTkGText(tk.Text):
     def __init__(self, design_or_text_frame):
@@ -15,9 +34,9 @@ class VTkGDesignerOrText(ttk.Frame):
     design_selected = True
     text_selected = False
 
-    def __init__(self, mainApp):
+    def __init__(self, mainApp, properties_frame):
         super().__init__(mainApp, height=900, width=1000, borderwidth=5, relief='groove')
-
+        self.properties_frame = properties_frame
         self.rowconfigure(0, weight=1)
         self.rowconfigure(1, weight=14)
         self.columnconfigure(0, weight=1)
@@ -44,8 +63,10 @@ class VTkGDesignerOrText(ttk.Frame):
         self.text_tab.grid(row=0, column=1, sticky='n')
         self.text_tab.bind("<Button-1>", self.selectAppropriate)
 
-        self.design_canvas = VTkGDesigner(self)
+        self.design_canvas = VTkGDesigner(self, self.properties_frame)
         self.text_canvas = VTkGText(self)
+
+        
 
         self.grid(row=0, column=1, sticky='ns')
 

@@ -1,4 +1,3 @@
-
 import VTkGMainApp
 import VTkGToolBox
 import VTkGDesignerOrText
@@ -46,24 +45,9 @@ maximumWidth = 1000
 
 if __name__ == "__main__":
     app = VTkGMainApp.VTkGMainApp()
-    tool_box = VTkGToolBox.VTkGToolBox(app)
-    designer_or_text = VTkGDesignerOrText.VTkGDesignerOrText(app)
+
     properties = VTkGPropertiesArea.VTkGPropertiesArea(app)
+    designer_or_text = VTkGDesignerOrText.VTkGDesignerOrText(app, properties)
+    tool_box = VTkGToolBox.VTkGToolBox(app, designer_or_text.design_canvas)
+    
     app.mainloop()
-
-# toolBox = ttk.Frame(mainWindow, height=900, width=300)
-# toolBox['borderwidth'] = 5
-# toolBox['relief'] = 'groove'
-# toolBox.grid(row=0, column=0, sticky="nw")
-
-
-# designOrTextArea = ttk.Frame(mainWindow, height=900, width=1000)
-# designOrTextArea['borderwidth'] = 5
-# designOrTextArea['relief'] = 'groove'
-# designOrTextArea.grid(row=0, column=1, sticky="ns")
-
-
-# properties = ttk.Frame(mainWindow, height=900, width=300)
-# properties['borderwidth'] = 5
-# properties['relief'] = 'groove'
-# properties.grid(row=0, column=2, sticky="ne")

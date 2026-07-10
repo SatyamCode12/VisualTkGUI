@@ -1,5 +1,8 @@
 import tkinter as tk
 from tkinter import ttk
+import VTkGMainApp
+import VTkGDesignerOrText
+import VTkGPropertiesArea
 
 class VTkGToolBox(ttk.Frame):
     tools = [
@@ -30,9 +33,9 @@ class VTkGToolBox(ttk.Frame):
     ttk.Separator,
     ttk.Labelframe
 ]
-    def __init__(self, mainApp):
+    def __init__(self, mainApp, design_canvas_app):
         super().__init__(mainApp, height=900, width=300, borderwidth=5, relief='groove')
-        
+        self.design_canvas = design_canvas_app
         self.rowconfigure(0, weight=1)
         for i in range(len(self.tools)):
             self.rowconfigure(i+1, weight=1)
@@ -52,7 +55,13 @@ class VTkGToolBox(ttk.Frame):
         for rw, tl in enumerate(self.tools, start=1):
            ttk.Button(
                self,
-               text=tl.__name__
+               text=tl.__name__,
+               command= lambda widget_class = tl:self.addControl(widget_class = widget_class)
            ).grid(row=rw, column=0, sticky='ew')
 
         self.grid(row=0, column=0, sticky='nw')
+    
+    def addControl(self, widget_class):
+        widget = widget_class(self.design_canvas)
+        widget.place(x=0, y=0)
+        self.design_canvas.add_new_control(widget)
