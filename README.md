@@ -12,7 +12,7 @@ If you want to customize and use it as you want it, then clone the repository an
 ```python
 python main.py
 ```
->There are no dependencies required, VisualTkGUI only uses `Python` and `Tkinter` only.
+>There are no dependencies required, VisualTkGUI uses `Python` and `Tkinter` only.
 
 The project structure is quite simple, start exploring from `main.py`.
 
