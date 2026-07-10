@@ -15,7 +15,8 @@ class VTkGDesigner(tk.Canvas):
 
     def dragStart(self, event):
         widget = event.widget
-        self.properties_frame.get_properties_list(widget)
+        # self.properties_frame.get_properties_list(widget)
+        # widget.configure(self.properties_frame.get_properties_list_value(widget))
         widget.StartX = event.x
         widget.StartY = event.y
 
@@ -27,7 +28,7 @@ class VTkGDesigner(tk.Canvas):
 
 class VTkGText(tk.Text):
     def __init__(self, design_or_text_frame):
-        super().__init__(design_or_text_frame, height=42, width=1000, bg="white")
+        super().__init__(design_or_text_frame, height=42, width=100, bg="white")
         self.grid(row= 1, column=0, columnspan=2, sticky='nw')
 
 class VTkGDesignerOrText(ttk.Frame):
@@ -63,10 +64,9 @@ class VTkGDesignerOrText(ttk.Frame):
         self.text_tab.grid(row=0, column=1, sticky='n')
         self.text_tab.bind("<Button-1>", self.selectAppropriate)
 
-        self.design_canvas = VTkGDesigner(self, self.properties_frame)
-        self.text_canvas = VTkGText(self)
-
         
+        self.text_canvas = VTkGText(self)
+        self.design_canvas = VTkGDesigner(self, self.properties_frame)
 
         self.grid(row=0, column=1, sticky='ns')
 
