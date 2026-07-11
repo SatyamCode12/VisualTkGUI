@@ -12,9 +12,10 @@ If you want to customize and use it as you want it, then clone the repository an
 ```python
 python main.py
 ```
->There are no dependencies required, VisualTkGUI only uses `Python` and `Tkinter` only.
+There are no dependencies required, VisualTkGUI uses `Python` and `Tkinter` only.
 
-The project structure is quite simple, start exploring from `main.py`.
+>[!TIP]
+>The project structure is quite simple, start exploring from `main.py`.
 
 # Contribution
 
@@ -33,6 +34,7 @@ For Contributing, Start by exploring with `main.py` inside `main/` folder.
     - VTkGText - How Text Editor works.
 
 ## How to Contribute
+> [!NOTE]
 > If You are here before first Release, wait for first `beta` release.
 1. Fork this repository in you GitHub profile.
 2. Clone your fork to your PC/ Device
