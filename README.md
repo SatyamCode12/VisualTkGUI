@@ -1,3 +1,7 @@
+<p align='center'>
+    <img src="assets/banner.png" alt="VisualTkGUI">
+</p>
+
 # VisualTkGUI
 VisualTkGUI is a tool to make GUI with Python Tkinter Library Visually, i.e., something similar to Visual Studio for WinForms, but for Python and Tkinter.
 
