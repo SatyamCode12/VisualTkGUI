@@ -2,52 +2,35 @@ import VTkGMainApp
 import VTkGToolBox
 import VTkGDesignerOrText
 import VTkGPropertiesArea
+import VTkGStartScreen
+import VTkGNewProject
+import VTkGOpenProject
 
 from ctypes import windll
-windll.shcore.SetProcessDpiAwareness(1)
-
-def printHello():
-    print("Hello World!")
-
-def dragStart(event):
-    widget = event.widget
-    widget.StartX = event.x
-    widget.StartY = event.y
-
-def dragMotion(event):
-    widget = event.widget
-    x = widget.winfo_x() - widget.StartX + event.x
-    y = widget.winfo_y() - widget.StartY + event.y
-    widget.place(x=x, y=y)
-
-def SetWindowToCenter(mainWindow):
-    screen_width = mainWindow.winfo_screenwidth()
-    screen_height = mainWindow.winfo_screenheight()
-    global windowOffsetX, windowOffsetY
-    windowOffsetX = (int)(screen_width/2) - (int)(windowWidth/2)
-    windowOffsetY = (int)(screen_height/2) - (int)(windowHeight/2)
-    
-windowHeight = 900
-windowWidth = 1600
-windowOffsetX = 0
-windowOffsetY = 0
-windowOpacity = 1 # 0 <= windowOpacity <= 1
-isHeightResizable = False
-isWidthResizable = False
-IsAlwaysOnTop = 0 # 0 = No, 1 = Yes
-iconPath = ""
-limitMinimumSize = False
-minimumHeight = 100
-minimumWidth = 100
-limitMaximumSize = False
-maximumHeight = 800
-maximumWidth = 1000
+windll.shcore.SetProcessDpiAwareness(1) # this line is to make app DPI aware
 
 if __name__ == "__main__":
-    app = VTkGMainApp.VTkGMainApp()
+    app_start = VTkGStartScreen.VTkGStartScreen() # start screen of app
+    app_start.mainloop() # starting start screen
+    is_new_project = app_start.is_new_project
+    is_open_project = app_start.is_open_project
+    is_close_window = app_start.is_close_window
+    if(is_new_project):
+        new_project_window = VTkGNewProject.VTkGNewProject() # new project window
+        new_project_window.mainloop() # starting new project window
 
-    properties = VTkGPropertiesArea.VTkGPropertiesArea(app)
-    designer_or_text = VTkGDesignerOrText.VTkGDesignerOrText(app, properties)
-    tool_box = VTkGToolBox.VTkGToolBox(app, designer_or_text.design_canvas)
+    if(is_open_project):
+        new_project_window = VTkGOpenProject.VTkGOpenProject() # open project window
+        new_project_window.mainloop() # starting open project window
+
+    #if(not is_close_window):
+        #app = VTkGMainApp.VTkGMainApp() # initiating main app
+        
+        #properties = VTkGPropertiesArea.VTkGPropertiesArea(app) # initiating properties area
+        #designer_or_text = VTkGDesignerOrText.VTkGDesignerOrText(app, properties) # initiating design/ text area
+        #tool_box = VTkGToolBox.VTkGToolBox(app, designer_or_text.design_canvas) # initiating toolbox
+        
+        #app.mainloop() # starting main app
+
     
-    app.mainloop()
+    

@@ -2,6 +2,8 @@ import tkinter as tk
 from tkinter import ttk
 
 class VTkGPropertiesArea(ttk.Frame):
+
+    # initiating VTkGPropertiesArea
     def __init__(self, mainApp):
         super().__init__(mainApp, height=900, width=300, borderwidth=5, relief='groove')
 
@@ -14,6 +16,9 @@ class VTkGPropertiesArea(ttk.Frame):
         
         self.columnconfigure(0, weight=1)
 
+        # setting the following TRUE will
+        # set the size of container based on size of control
+        # so keep it FALSE (recommended)
         self.grid_propagate(False)
 
         self.properties_list = tk.Canvas(self, height=700, width=300)
