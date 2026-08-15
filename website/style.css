@@ -1,0 +1,54 @@
+body{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-self: center;
+    padding: 50px;
+}
+
+.container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.heading{
+    align-self: center;
+    font-size: 44px;
+    margin-left: 40px;
+}
+
+.overviewLine{
+    align-self: center;
+    display: flex;
+    text-align: center;
+    margin-top: 50px;
+    padding: 5px;
+}
+
+.getStarted{
+    background-color: rgb(251, 231, 234);
+    border: 2px solid rgb(244, 174, 174);
+    width: auto;
+    padding-right: 40px;
+    padding-left: 40px;
+    margin-top: 20px;
+    align-self: center;
+    border-radius: 15px;
+}
+
+.temporaryNotice{
+    background-color: wheat;
+    padding: 5px;
+    padding-left: 10px;
+    padding-right: 10px;
+    border-radius: 10px;
+    border: 2px solid rgb(190, 172, 138);
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    align-self: center;
+    justify-content: center;
+    margin-top: 80px;
+}
