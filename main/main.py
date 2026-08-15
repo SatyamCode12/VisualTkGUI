@@ -15,22 +15,31 @@ if __name__ == "__main__":
     is_new_project = app_start.is_new_project
     is_open_project = app_start.is_open_project
     is_close_window = app_start.is_close_window
-    if(is_new_project):
+
+    project_name = ""
+    project_path = ""
+    if is_new_project:
         new_project_window = VTkGNewProject.VTkGNewProject() # new project window
         new_project_window.mainloop() # starting new project window
+        project_name = new_project_window.NAME.get()
+        project_path = new_project_window.PATHTOPROJECT.get()
 
-    if(is_open_project):
-        new_project_window = VTkGOpenProject.VTkGOpenProject() # open project window
-        new_project_window.mainloop() # starting open project window
+    if is_open_project:
+        open_project_window = VTkGOpenProject.VTkGOpenProject() # open project window
+        open_project_window.mainloop() # starting open project window
+        project_path = open_project_window.PATHTOPROJECT.get()
 
-    #if(not is_close_window):
-        #app = VTkGMainApp.VTkGMainApp() # initiating main app
+    #print(project_name)
+    #print(project_path)
+
+    if not is_close_window:
+        app = VTkGMainApp.VTkGMainApp() # initiating main app
         
-        #properties = VTkGPropertiesArea.VTkGPropertiesArea(app) # initiating properties area
-        #designer_or_text = VTkGDesignerOrText.VTkGDesignerOrText(app, properties) # initiating design/ text area
-        #tool_box = VTkGToolBox.VTkGToolBox(app, designer_or_text.design_canvas) # initiating toolbox
+        properties = VTkGPropertiesArea.VTkGPropertiesArea(app) # initiating properties area
+        designer_or_text = VTkGDesignerOrText.VTkGDesignerOrText(app, properties) # initiating design/ text area
+        tool_box = VTkGToolBox.VTkGToolBox(app, designer_or_text.design_canvas) # initiating toolbox
         
-        #app.mainloop() # starting main app
+        app.mainloop() # starting main app
 
     
     

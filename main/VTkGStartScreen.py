@@ -50,9 +50,11 @@ class VTkGStartScreen(tk.Tk):
 
     def open_project(self):
         self.is_open_project = True
+        self.is_close_window = False
         self.destroy()
 
     def new_project(self):
         self.is_new_project = True
+        self.is_close_window = False
         self.destroy()
 

@@ -35,24 +35,23 @@ class VTkGNewProject(tk.Tk):
         # self.grid_propagate(False)
 
 
+        self.NAME = tk.StringVar()
+        self.PATHTOPROJECT = tk.StringVar()
+
         screen_text = ttk.Label(self, text="New Project!", anchor='center', font='Arial 18')
         screen_text.grid(row=1, column=1, sticky='n', columnspan=2)
         name_label = ttk.Label(self, text="Project Name:")
         name_label.grid(row=2, column=1, sticky='ew')
-        name_entry = ttk.Entry(self, textvariable="NAME")
+        name_entry = ttk.Entry(self, textvariable=self.NAME)
         name_entry.grid(row=2, column=2, sticky='ew')
         directory_label = ttk.Label(self, text="Project Directory:")
         directory_label.grid(row=3, column=1, sticky='ew')
+        directory_entry = ttk.Entry(self, textvariable=self.PATHTOPROJECT)
+        directory_entry.grid(row=3, column=2, sticky='ew')
 
-    def close_Window(self):
-        self.is_close_window = True
-        self.destroy()
+        create_new = ttk.Button(self, text="Create New", command=self.create_new)
+        create_new.grid(row=4, column=1, columnspan=2, sticky='ew')
 
-    def open_project(self):
-        self.is_open_window = True
-        self.destroy()
-
-    def new_project(self):
-        self.is_new_project = True
+    def create_new(self):
         self.destroy()
 

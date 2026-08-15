@@ -31,21 +31,22 @@ class VTkGOpenProject(tk.Tk):
         self.columnconfigure(0, weight=1)
         self.columnconfigure(1, weight=1)
         self.columnconfigure(2, weight=1)
+        self.columnconfigure(3, weight=1)
         # self.grid_propagate(False)
 
 
-        screen_text = ttk.Label(self, text="Open Project!", anchor='center', font='Arial 18')
-        screen_text.grid(row=1, column=1, sticky='n')
+        self.PATHTOPROJECT = tk.StringVar()
 
-    def close_Window(self):
-        self.is_close_window = True
-        self.destroy()
+        screen_text = ttk.Label(self, text="Open Project!", anchor='center', font='Arial 18')
+        screen_text.grid(row=1, column=1, columnspan=2, sticky='n')
+        directory_label = ttk.Label(self, text="Project Directory:")
+        directory_label.grid(row=3, column=1, sticky='ew')
+        directory_entry = ttk.Entry(self, textvariable=self.PATHTOPROJECT)
+        directory_entry.grid(row=3, column=2, sticky='ew')
+
+        open_project = ttk.Button(self, text="Open Project", command=self.open_project)
+        open_project.grid(row=4, column=1, columnspan=2, sticky='ew')
 
     def open_project(self):
-        self.is_open_window = True
-        self.destroy()
-
-    def new_project(self):
-        self.is_new_project = True
         self.destroy()
 
