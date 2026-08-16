@@ -1,4 +1,35 @@
 body{
+    background-color: white;
+    /* cursor: url("assets/cursor.png") 0 0, pointer; */
+}
+
+.header{
+    display: flex;
+    background-color: rgb(207, 254, 238);
+    height: 1.5em;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: center;
+    padding: 10px;
+    font-size: 22px;
+}
+
+.menuItems{
+    cursor: pointer;
+    margin-left: 10px;
+    margin-right: 10px;
+    padding: 10px;
+    border-radius: 10px;
+    background-color: rgb(207, 254, 238);
+    text-align: center;
+    transition: all 0.2s;
+}
+
+.menuItems:hover{
+    background-color: rgb(180, 233, 215);
+}
+
+.bodyContainer{
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -16,7 +47,7 @@ body{
 .heading{
     align-self: center;
     font-size: 44px;
-    margin-left: 40px;
+    margin: 20px;
 }
 
 .overviewLine{
@@ -25,9 +56,11 @@ body{
     text-align: center;
     margin-top: 50px;
     padding: 5px;
+    font-size: 18px;
 }
 
 .getStarted{
+    cursor: pointer;
     background-color: rgb(251, 231, 234);
     border: 2px solid rgb(244, 174, 174);
     width: auto;
@@ -36,6 +69,12 @@ body{
     margin-top: 20px;
     align-self: center;
     border-radius: 15px;
+    transition: all 0.2s;
+}
+
+.getStarted:hover{
+    background-color: rgb(244, 174, 174);
+    border: 2px solid rgb(183, 140, 140);
 }
 
 .temporaryNotice{
@@ -51,4 +90,37 @@ body{
     align-self: center;
     justify-content: center;
     margin-top: 80px;
+}
+
+.footer{
+    margin: unset;
+    position: fixed;
+    height: 50px;
+    bottom: 0px;
+    display: flex;
+    background-color: rgb(86, 85, 85);
+    color: white;
+    align-items: center;
+    width: 100%;
+}
+
+.logos{
+    position: absolute;
+    right: 0px;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+}
+
+.linkLogo{
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: white;
+}
+
+.logoImage{
+    height: 3em;
+    margin: 10px;
+    border-radius: 20px;
 }
