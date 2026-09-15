@@ -13,7 +13,7 @@ class VTkGDesigner(tk.Canvas):
         self.properties_frame = properties_frame
 
         #placing grid 
-        self.grid(row= 1, column=0, columnspan=2, sticky='nw')
+        self.grid(row= 1, column=0, columnspan=3, sticky='nw')
 
         # List of controls present in the main app
         self.control_list = []
@@ -48,7 +48,7 @@ class VTkGText(tk.Text):
     # initiating VTkGText
     def __init__(self, design_or_text_frame):
         super().__init__(design_or_text_frame, height=42, width=100, bg="white")
-        self.grid(row= 1, column=0, columnspan=2, sticky='nw')
+        self.grid(row= 1, column=0, columnspan=3, sticky='nw')
 
 # the following class is for main design/text area in the middle
 class VTkGDesignerOrText(ttk.Frame):
@@ -69,6 +69,7 @@ class VTkGDesignerOrText(ttk.Frame):
         self.rowconfigure(1, weight=14)
         self.columnconfigure(0, weight=1)
         self.columnconfigure(1, weight=1)
+        self.columnconfigure(2, weight=1)
 
         # setting the following TRUE will
         # set the size of container based on size of control
@@ -78,7 +79,7 @@ class VTkGDesignerOrText(ttk.Frame):
         # the following is top design_tab to switch between design and text editor
         self.design_tab = ttk.Label(self, 
                                  text="Design Editor", 
-                                 width=300, font="Arial 14", 
+                                 width=200, font="Arial 14", 
                                  anchor='center', 
                                  background = "#04909A" if self.design_selected else "#c8fcff", 
                                  padding=8)
@@ -89,13 +90,24 @@ class VTkGDesignerOrText(ttk.Frame):
         # the following is top text_tab to switch between design and text editor
         self.text_tab = ttk.Label(self, 
                                  text="Text Editor", 
-                                 width=300, font="Arial 14", 
+                                 width=200, font="Arial 14", 
                                  anchor='center', 
                                  background= "#04909A" if self.text_selected else "#c8fcff", 
                                  padding=8)
         
         self.text_tab.grid(row=0, column=1, sticky='n') # placing control
         self.text_tab.bind("<Button-1>", self.selectAppropriate) # changes to text editor when left clicked
+
+        # the following is top design_tab to switch between design and text editor
+        self.build_button = ttk.Label(self, 
+                                 text="Build", 
+                                 width=200, font="Arial 14", 
+                                 anchor='center', 
+                                 background = "#8DF1A9",
+                                 padding=8)
+        
+        self.build_button.grid(row=0, column=2, sticky='n') # placing control
+        self.build_button.bind("<Button-1>", self.build_project) # bind to start building the project
 
         # instanciating text editor and canvas
         self.text_canvas = VTkGText(self)
@@ -112,7 +124,7 @@ class VTkGDesignerOrText(ttk.Frame):
             self.design_selected = True
             self.text_selected = False
             self.design_canvas.focus_set()
-            self.design_canvas.grid(row=1, column=0, columnspan=2, sticky='nw')
+            self.design_canvas.grid(row=1, column=0, columnspan=3, sticky='nw')
             self.text_canvas.grid_remove()
             
         elif widget == self.text_tab:
@@ -120,8 +132,11 @@ class VTkGDesignerOrText(ttk.Frame):
             self.text_selected = True
             self.text_canvas.focus_set()
             self.design_canvas.grid_remove()
-            self.text_canvas.grid(row=1, column=0, columnspan=2, sticky='nw')
+            self.text_canvas.grid(row=1, column=0, columnspan=3, sticky='nw')
 
         # configuring color based on selection
         self.design_tab.configure(background="#04909A" if self.design_selected else "#c8fcff")
         self.text_tab.configure(background="#04909A" if self.text_selected else "#c8fcff")
+
+    def build_project(self, event):
+        self.build_button.configure(background="#6BBD82")

@@ -78,5 +78,39 @@ class VTkGToolBox(ttk.Frame):
     # This function adds selected/ clicked control to canvas
     def addControl(self, widget_class):
         widget = widget_class(self.design_canvas)
+
+        # before adding the widget to canvas we will open properties window
+        # to configure it before adding it to canvas
+        properties_widget = tk.Tk()
+        properties_widget.title(widget_class.__name__)
+        properties_widget.geometry(f"{500}x{400}+{600}+{200}")  # (width x height + xOffset + yOffset)
+        properties_widget.resizable(False, False)               # (isHeightResizable, isWidthResizable)
+
+        # properties_widget.propagate(False)
+
+        properties_widget.rowconfigure(0, weight=1)
+        properties_widget.rowconfigure(1, weight=1)
+        properties_widget.rowconfigure(2, weight=1)
+        properties_widget.rowconfigure(3, weight=1)
+        properties_widget.columnconfigure(0, weight=1)
+        properties_widget.columnconfigure(1, weight=2)
+
+        name_in_code = ttk.Label(properties_widget, text="name in code")
+        name_in_code.grid(row=0, column=0, sticky='e', padx=10, pady=10)
+
+        name_in_code_entry = ttk.Entry(properties_widget)
+        name_in_code_entry.grid(row=0, column=1, sticky='w', padx=10, pady=10)
+
+        text = ttk.Label(properties_widget, text="text")
+        text.grid(row=1, column=0, sticky='e', padx=10, pady=10)
+
+        text_entry = ttk.Entry(properties_widget)
+        text_entry.grid(row=1, column=1, sticky='w', padx=10, pady=10)
+
+        add_button = ttk.Button(properties_widget, text="Add", command=properties_widget.destroy)
+        add_button.grid(row=2, column=0, columnspan=2, padx=10, pady=10)
+
+        properties_widget.mainloop()
+
         widget.place(x=0, y=0)
         self.design_canvas.add_new_control(widget)
