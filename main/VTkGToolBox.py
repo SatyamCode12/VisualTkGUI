@@ -78,10 +78,10 @@ class VTkGToolBox(ttk.Frame):
     # This function adds selected/ clicked control to canvas
     def addControl(self, widget_class):
         widget = widget_class(self.design_canvas)
-
+        
         # before adding the widget to canvas we will open properties window
         # to configure it before adding it to canvas
-        properties_widget = tk.Tk()
+        properties_widget = tk.Toplevel(self.design_canvas)
         properties_widget.title(widget_class.__name__)
         properties_widget.geometry(f"{500}x{400}+{600}+{200}")  # (width x height + xOffset + yOffset)
         properties_widget.resizable(False, False)               # (isHeightResizable, isWidthResizable)
@@ -110,7 +110,9 @@ class VTkGToolBox(ttk.Frame):
         add_button = ttk.Button(properties_widget, text="Add", command=properties_widget.destroy)
         add_button.grid(row=2, column=0, columnspan=2, padx=10, pady=10)
 
-        properties_widget.mainloop()
+        properties_widget.grab_set() # This will prevent user from accessing main app without closing this dialog box
+        self.design_canvas.master.wait_window(properties_widget) # This will prevent adding new event loop so main
+                                                                 # app waits for dialog to close
 
         widget.place(x=0, y=0)
         self.design_canvas.add_new_control(widget)

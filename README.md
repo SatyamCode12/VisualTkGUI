@@ -8,6 +8,10 @@ VisualTkGUI is a tool to make GUI with Python Tkinter Library Visually, i.e., so
 >[!WARNING]
 >This project is under development, First Release (Beta) on 1st December 2026. (release is delayed, initially release was scheduled on 1 August 2026)
 
+Check out the demo by clicking below:
+
+[![Watch demo](./assets/VisualTkGUI_DEMO_01_Thumbnail.png)](https://drive.google.com/file/d/1YSee2Q3ujZF9Err-BCRCyZYd0o5tm3qD/view?usp=sharing)
+
 # Installation
 If you want to just make GUI with this then just install this with installer inside `Releases` folder.
 
